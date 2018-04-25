@@ -16,19 +16,36 @@ public class SysUser {
     private byte[] headImg;
     private Date createTime;
 
+    private SysRole role;
 
-    public SysUser() {
-    }
-
-    public SysUser(Long id, String usernName, String userPassword,
-                   String userEmail, String userInfo, byte[] headImg, Date createTime) {
+    public SysUser(Long id, String userName, String userPassword, String userEmail, String userInfo, byte[] headImg, Date createTime, SysRole role) {
         this.id = id;
-        this.userName = usernName;
+        this.userName = userName;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
         this.userInfo = userInfo;
         this.headImg = headImg;
         this.createTime = createTime;
+        this.role = role;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public SysRole getRole() {
+        return role;
+    }
+
+    public void setRole(SysRole role) {
+        this.role = role;
+    }
+
+    public SysUser() {
     }
 
     public Long getId() {
@@ -91,12 +108,13 @@ public class SysUser {
     public String toString() {
         return "SysUser{" +
                 "id=" + id +
-                ", usernName='" + userName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userInfo='" + userInfo + '\'' +
                 ", headImg=" + Arrays.toString(headImg) +
                 ", createTime=" + createTime +
+                ", role=" + role +
                 '}';
     }
 }

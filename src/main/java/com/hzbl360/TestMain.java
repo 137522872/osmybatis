@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -122,4 +123,37 @@ public class TestMain {
 
         System.out.println(sysRoles);
     }
+
+    @Test
+    public void selectByIdList(){
+
+        SqlSession sqlSession = getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        ArrayList<Long> idList = new ArrayList<Long>();
+        idList.add(1L);
+        idList.add(2L);
+
+        List<SysUser> sysUsers = mapper.selectByIdList(idList);
+        System.out.println(sysUsers);
+    }
+
+
+    @Test
+    public void selectRoleById(){
+        SqlSession sqlSession = getSqlSession();
+        SysRole o = sqlSession.selectOne("com.hzbl360.mapper.RoleMapper.selectRoleById", 1);
+        System.out.println(o);
+    }
+
+    @Test
+    public void  selectUserAndRoleByIdSelect(){
+        SqlSession sqlSession = getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        SysUser sysUser = mapper.selectUserAndRoleByIdSelect(2L);
+        System.out.println(sysUser);
+
+    }
+
+
 }

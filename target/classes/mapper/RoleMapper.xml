@@ -5,5 +5,11 @@
 
 
 <mapper namespace="com.hzbl360.mapper.RoleMapper">
+    <resultMap id="roleMap" type="com.hzbl360.pojo.SysRole">
 
+    </resultMap>
+
+    <select id="selectRoleById" resultType="com.hzbl360.pojo.SysRole">
+        select id,role_name,enabled,create_by,create_time from sys_role where id=#{id}
+    </select>
 </mapper>

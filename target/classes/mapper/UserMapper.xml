@@ -77,4 +77,31 @@
         inner join sys_role r  on ur.role_id = r.id
         where u.id = #{userId} and r.enabled = #{enabled}
     </select>
+
+    <select id="selectByIdList" resultType="com.hzbl360.pojo.SysUser">
+        select * from sys_user
+        where id in
+        <foreach collection="list" open="(" close=")" separator="," item="id" index="i">
+            #{id}
+        </foreach>
+    </select>
+
+    <resultMap id="userRoleMapSelect" type="com.hzbl360.pojo.SysUser" extends="userMap">
+        <association property="role" column="{id=id}" select="com.hzbl360.mapper.RoleMapper.selectRoleById"></association>
+    </resultMap>
+
+    <select id="selectUserAndRoleByIdSelect" resultMap="userRoleMapSelect">
+        select
+          u.id,
+          u.user_name,
+          u.user_password,
+          u.user_email,
+          u.user_info,
+          u.head_img,
+          u.create_time,
+          ur.role_id
+        from sys_user u
+        inner join sys_user_role ur on u.id = ur.user_id
+        where u.id = #{id}
+    </select>
 </mapper>
