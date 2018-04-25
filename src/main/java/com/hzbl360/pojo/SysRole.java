@@ -1,6 +1,7 @@
 package com.hzbl360.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -14,17 +15,20 @@ public class SysRole {
     private Date createTime;
 
     private SysUser user;
+    List<SysPrivilege> privilegeList;
+
+    private CreateInfo createInfo;
+
 
     public SysRole() {
     }
 
-    public SysRole(Long id, String roleName, Integer enable, Long createBy, Date createTime, SysUser user) {
-        this.id = id;
-        this.roleName = roleName;
-        this.enable = enable;
-        this.createBy = createBy;
-        this.createTime = createTime;
-        this.user = user;
+    public CreateInfo getCreateInfo() {
+        return createInfo;
+    }
+
+    public void setCreateInfo(CreateInfo createInfo) {
+        this.createInfo = createInfo;
     }
 
     public SysRole(Long id, String roleName, Integer enable,
@@ -34,6 +38,14 @@ public class SysRole {
         this.enable = enable;
         this.createBy = createBy;
         this.createTime = createTime;
+    }
+
+    public List<SysPrivilege> getPrivilegeList() {
+        return privilegeList;
+    }
+
+    public void setPrivilegeList(List<SysPrivilege> privilegeList) {
+        this.privilegeList = privilegeList;
     }
 
     public SysUser getUser() {

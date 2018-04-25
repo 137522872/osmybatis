@@ -6,10 +6,34 @@
 
 <mapper namespace="com.hzbl360.mapper.RoleMapper">
     <resultMap id="roleMap" type="com.hzbl360.pojo.SysRole">
-
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="enable" column="enabled" />
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <select id="selectRoleById" resultType="com.hzbl360.pojo.SysRole">
         select id,role_name,enabled,create_by,create_time from sys_role where id=#{id}
+    </select>
+
+
+    <resultMap id="rolePrivilegeListMap" type="com.hzbl360.pojo.SysRole" extends="roleMap">
+        <collection property="privilegeList" resultMap="com.hzbl360.mapper.PrivilegeMapper.privilegeMap"/>
+    </resultMap>
+
+    <select id="selectAllRoleAndPrivileges" resultMap="rolePrivilegeListMap">
+        select
+          r.id,
+          r.role_name,
+          r.enabled,
+          r.create_by,
+          r.create_time,
+          p.id,
+          p.privilege_name,
+          p.privilege_url
+        from sys_role r
+        inner join sys_role_privilege rp on rp.role_id = r.id
+        inner join sys_privilege p  on p.id = rp.privilege_id
     </select>
 </mapper>

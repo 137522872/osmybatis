@@ -6,4 +6,9 @@
 
 <mapper namespace="com.hzbl360.mapper.PrivilegeMapper">
 
+    <resultMap id="privilegeMap" type="com.hzbl360.pojo.SysPrivilege">
+        <id property="id" column="id"/>
+        <result property="privilegeName" column="privilege_name"/>
+        <result property="privilegeUrl" column="privilege_url"/>
+    </resultMap>
 </mapper>

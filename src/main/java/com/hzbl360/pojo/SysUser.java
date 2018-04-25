@@ -1,7 +1,10 @@
 package com.hzbl360.pojo;
 
+import org.json.JSONArray;
+
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -18,6 +21,10 @@ public class SysUser {
 
     private SysRole role;
 
+    private List<SysRole> roleList;
+
+
+
     public SysUser(Long id, String userName, String userPassword, String userEmail, String userInfo, byte[] headImg, Date createTime, SysRole role) {
         this.id = id;
         this.userName = userName;
@@ -27,6 +34,14 @@ public class SysUser {
         this.headImg = headImg;
         this.createTime = createTime;
         this.role = role;
+    }
+
+    public List<SysRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRole> roleList) {
+        this.roleList = roleList;
     }
 
     public String getUserName() {
@@ -106,6 +121,8 @@ public class SysUser {
 
     @Override
     public String toString() {
+
+
         return "SysUser{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
@@ -115,6 +132,8 @@ public class SysUser {
                 ", headImg=" + Arrays.toString(headImg) +
                 ", createTime=" + createTime +
                 ", role=" + role +
+                ", roleList=" + new JSONArray(roleList) +
                 '}';
+
     }
 }

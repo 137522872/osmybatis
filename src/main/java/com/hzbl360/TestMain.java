@@ -1,5 +1,6 @@
 package com.hzbl360;
 
+import com.hzbl360.mapper.RoleMapper;
 import com.hzbl360.mapper.UserMapper;
 import com.hzbl360.pojo.SysRole;
 import com.hzbl360.pojo.SysUser;
@@ -155,5 +156,35 @@ public class TestMain {
 
     }
 
+    @Test
+    public void selectUserAndRoleByIdSelect2(){
+        SqlSession sqlSession = getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
+        List<SysUser> sysUser1 = mapper.selectUserAndRoleByIdSelect2();
+        for(SysUser sysUser:sysUser1){
+            System.out.println(sysUser);
+        }
+
+    }
+
+    @Test
+    public void selectAllUserAndRoles(){
+        SqlSession sqlSession = getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<SysUser> sysUsers = mapper.selectAllUserAndRoles();
+        for (SysUser sysUser:sysUsers){
+            System.out.println(sysUser);
+        }
+    }
+
+    @Test
+    public void selectAllRoleAndPrivileges(){
+        SqlSession sqlSession = getSqlSession();
+        RoleMapper mapper = sqlSession.getMapper(RoleMapper.class);
+        List<SysRole> sysRoles = mapper.selectAllRoleAndPrivileges();
+        for (SysRole sysRole:sysRoles){
+            System.out.println(sysRole);
+        }
+    }
 }
